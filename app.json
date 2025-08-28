@@ -1,29 +1,48 @@
 {
   "expo": {
-    "name": "astro-journal",
+    "name": "Astro Journal",
     "slug": "astro-journal",
     "version": "1.0.0",
+    "main": "index.ts",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "newArchEnabled": true,
+    "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#6B46C1"
     },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.astrojournal.app",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#6B46C1"
       },
-      "edgeToEdgeEnabled": true
+      "package": "com.astrojournal.app",
+      "versionCode": 1
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-notifications"
+    ],
+    "notification": {
+      "icon": "./assets/favicon.png",
+      "color": "#6B46C1"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "cf11b37d-9959-4738-95f9-a4af21af223d"
+      }
     }
   }
 }

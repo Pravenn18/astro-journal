@@ -1,20 +1,32 @@
+import React, { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { AppProvider } from './src/context/AppContext';
+import { AppNavigator } from './src/navigation/AppNavigator';
+import * as Notifications from 'expo-notifications';
+import 'react-native-gesture-handler';
 
 export default function App() {
+  useEffect(() => {
+    // Set up notification handlers
+    const notificationListener = Notifications.addNotificationReceivedListener(notification => {
+      console.log('Notification received:', notification);
+    });
+
+    const responseListener = Notifications.addNotificationResponseReceivedListener(response => {
+      console.log('Notification response:', response);
+      // Handle notification tap - could navigate to specific screen
+    });
+
+    return () => {
+      Notifications.removeNotificationSubscription(notificationListener);
+      Notifications.removeNotificationSubscription(responseListener);
+    };
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+    <AppProvider>
       <StatusBar style="auto" />
-    </View>
+      <AppNavigator />
+    </AppProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
